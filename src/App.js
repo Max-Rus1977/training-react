@@ -2,9 +2,7 @@ import { useState } from 'react';
 
 import GenTitle from './components/GenTitle';
 import Line from './components/Line';
-import MyBtn from './components/UI/MyBtn';
-import MyInput from './components/UI/MyInput';
-import MyTextarea from './components/UI/MyTextarea';
+import PostForm from './components/PostForm';
 import PostItem from './PostItem';
 
 import './styles.css';
@@ -31,35 +29,14 @@ function App() {
     },
   ])
 
-  const [newPost, setNewPost] = useState({ title: '', body: '' })
-
-  const getTextInput = (event) => {
-    setNewPost({ ...newPost, title: event.target.value })
-  }
-
-  const getTextTextarea = (event) => {
-    setNewPost({ ...newPost, body: event.target.value })
-  }
-
-  const addNewPost = (event) => {
-    event.preventDefault()
-    if (newPost.title && newPost.body) {
-      setPosts([{ id: Date.now(), ...newPost }, ...posts])
-      setNewPost({ title: '', body: '' })
-    }
-    else {
-      alert('Поля не заполнены!')
-    }
+  const funCreatePost = (newPost) => {
+    setPosts([newPost, ...posts])
   }
 
   return (
     <div className="App">
       <GenTitle genTitleText="Список постов" />
-      <form>
-        <MyInput onChange={getTextInput} value={newPost.title} labelName='Текст заголовка' />
-        <MyTextarea onChange={getTextTextarea} value={newPost.body} labelName='Текст поста' />
-        <MyBtn onClick={addNewPost}>ADD POST</MyBtn>
-      </form>
+      <PostForm argCreatePost={funCreatePost} />
       <Line />
       {posts.map((post, index) => <PostItem
         key={post.id}
