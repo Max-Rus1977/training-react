@@ -51,6 +51,7 @@ function App() {
         title,
         body,
       }
+      setPosts([newPost, ...posts])
       console.log(newPost)
       setTitle('')
       setBody('')
@@ -69,8 +70,9 @@ function App() {
         <MyBtn onClick={addNewPost}>ADD POST</MyBtn>
       </form>
       <Line />
-      {posts.map((post) => <PostItem
+      {posts.map((post, index) => <PostItem
         key={post.id}
+        numberPost={index + 1}
         argObjPost={post} />
       )}
     </div>

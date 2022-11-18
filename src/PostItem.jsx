@@ -1,9 +1,9 @@
 import React from 'react'
 
-const PostItem = ({ argObjPost }) => {
+const PostItem = ({ argObjPost, numberPost }) => {
   return (
     <div className="box-post">
-      <h3>{argObjPost.id}. {argObjPost.title}</h3>
+      <h3>{numberPost}. {argObjPost.title}</h3>
       <p>{argObjPost.body}</p>
       <button className="btn">❌</button>
     </div>
