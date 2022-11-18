@@ -31,30 +31,21 @@ function App() {
     },
   ])
 
-
-  const [title, setTitle] = useState('')
-  const [body, setBody] = useState('')
+  const [newPost, setNewPost] = useState({ title: '', body: '' })
 
   const getTextInput = (event) => {
-    setTitle(event.target.value)
+    setNewPost({ ...newPost, title: event.target.value })
   }
 
   const getTextTextarea = (event) => {
-    setBody(event.target.value)
+    setNewPost({ ...newPost, body: event.target.value })
   }
 
   const addNewPost = (event) => {
     event.preventDefault()
-    if (title && body) {
-      const newPost = {
-        id: Date.now(),
-        title,
-        body,
-      }
-      setPosts([newPost, ...posts])
-      console.log(newPost)
-      setTitle('')
-      setBody('')
+    if (newPost.title && newPost.body) {
+      setPosts([{ id: Date.now(), ...newPost }, ...posts])
+      setNewPost({ title: '', body: '' })
     }
     else {
       alert('Поля не заполнены!')
@@ -65,8 +56,8 @@ function App() {
     <div className="App">
       <GenTitle genTitleText="Список постов" />
       <form>
-        <MyInput onChange={getTextInput} value={title} labelName='Текст заголовка' />
-        <MyTextarea onChange={getTextTextarea} value={body} labelName='Текст поста' />
+        <MyInput onChange={getTextInput} value={newPost.title} labelName='Текст заголовка' />
+        <MyTextarea onChange={getTextTextarea} value={newPost.body} labelName='Текст поста' />
         <MyBtn onClick={addNewPost}>ADD POST</MyBtn>
       </form>
       <Line />
@@ -80,4 +71,3 @@ function App() {
 }
 
 export default App;
-// git remote add origin https://github.com/Max-Rus1977/training-react.git
