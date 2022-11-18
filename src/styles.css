@@ -1,0 +1,168 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+.App {
+  width: 80%;
+  margin: 40px auto 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  margin: 30px 0 90px 0;
+}
+
+.box-input, .box-textarea {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.box-input {
+  margin: 0 auto;
+}
+
+.box-input label {
+  cursor: pointer;
+}
+
+.box-textarea label {
+  display: inline-block;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.box-input input, .box-textarea textarea {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 18px;
+  border: 1px solid #29d2ca;
+  border-radius: 7px;
+  transition: 0.3s;
+}
+
+.box-input input:focus, .box-textarea textarea:focus {
+  box-shadow: 1px 1px 1px #000;
+}
+
+.box-select {
+  margin-left: 10%;
+}
+
+.line {
+  width: 65%;
+  height: 1px;
+  margin: 0 auto 35px auto;
+  background-color: #000;
+}
+
+.box-select select {
+  border: 1px solid silver;
+}
+
+.box-post {
+  position: relative;
+  width: 80%;
+  min-height: 65px;
+  margin: 20px auto 0 auto;
+  padding: 10px 50px 10px 15px;
+  border: 2px solid #157cd0;
+  border-radius: 7px;
+}
+
+.box-post h3 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.box-post p {
+  margin-top: 5px;
+  font-size: 17px;
+  line-height: 109%;
+  color: #595959;
+}
+
+.btn {
+  width: 20px;
+  height: 20px;
+  color: red;
+  border: 1px solid red;
+  border-radius: 3px;
+  transition: 0.5s;
+}
+
+.btn:hover {
+  background-color: red;
+  color: beige;
+  border: 1px solid silver;
+}
+
+.box-post .btn {
+  position: absolute;
+  top: 10%;
+  right: 8px;
+}
+
+.btn__add-post {
+  width: 100px;
+  height: 30px;
+  background-color: #16c4df;
+  color: #471c1c;
+  border: 1px solid #004a81;
+}
+
+.box-btn__add-post {
+  float: right;
+  margin: 20px 10% 0 0;
+}
+
+.non-posts {
+  text-align: center;
+  font-size: 35px;
+  font-weight: 900;
+}
