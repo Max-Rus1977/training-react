@@ -5,6 +5,7 @@ import Line from './components/Line';
 import PostForm from './components/PostForm';
 import PostList from './components/PostList';
 import TitlePostsNone from './components/TitlePostsNone';
+import MySelect from './components/UI/MySelect';
 
 import './styles.css';
 
@@ -30,8 +31,6 @@ function App() {
     },
   ])
 
-  const objOptions = ['Названию', 'Описанию']
-
   const funCreatePost = (newPost) => {
     setPosts([newPost, ...posts])
   }
@@ -45,10 +44,7 @@ function App() {
       <GenTitle genTitleText="Список постов" />
       <PostForm argCreatePost={funCreatePost} />
       <Line />
-      <select className='select'>
-        <option>Сортировка по:</option>
-        {objOptions.map((option) => <option>{option}</option>)}
-      </select>
+      <MySelect />
       <Line />
       {
         posts.length !== 0
