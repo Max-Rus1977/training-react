@@ -3,7 +3,7 @@ import { useState } from 'react';
 import GenTitle from './components/GenTitle';
 import Line from './components/Line';
 import PostForm from './components/PostForm';
-import PostItem from './components/PostItem';
+import PostList from './components/PostList';
 
 import './styles.css';
 
@@ -42,12 +42,7 @@ function App() {
       <GenTitle genTitleText="Список постов" />
       <PostForm argCreatePost={funCreatePost} />
       <Line />
-      {posts.map((post, index) => <PostItem
-        key={post.id}
-        numberPost={index + 1}
-        argDeletePost={funDeletePost}
-        argObjPost={post} />
-      )}
+      <PostList arrPosts={posts} argDeletePost={funDeletePost} />
     </div>
   );
 }
