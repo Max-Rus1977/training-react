@@ -30,6 +30,8 @@ function App() {
     },
   ])
 
+  const objOptions = ['Названию', 'Описанию']
+
   const funCreatePost = (newPost) => {
     setPosts([newPost, ...posts])
   }
@@ -42,6 +44,11 @@ function App() {
     <div className="App">
       <GenTitle genTitleText="Список постов" />
       <PostForm argCreatePost={funCreatePost} />
+      <Line />
+      <select className='select'>
+        <option>Сортировка по:</option>
+        {objOptions.map((option) => <option>{option}</option>)}
+      </select>
       <Line />
       {
         posts.length !== 0

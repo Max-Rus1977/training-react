@@ -90,8 +90,9 @@ form {
   box-shadow: 1px 1px 1px #000;
 }
 
-.box-select {
-  margin-left: 10%;
+.select {
+  margin: 0 0 30px 10%;
+  border: 1px solid silver;
 }
 
 .line {
@@ -99,10 +100,6 @@ form {
   height: 1px;
   margin: 0 auto 35px auto;
   background-color: #000;
-}
-
-.box-select select {
-  border: 1px solid silver;
 }
 
 .box-post {
