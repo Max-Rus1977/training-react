@@ -3,7 +3,7 @@ import { useState } from 'react';
 import GenTitle from './components/GenTitle';
 import Line from './components/Line';
 import PostForm from './components/PostForm';
-import PostItem from './PostItem';
+import PostItem from './components/PostItem';
 
 import './styles.css';
 
@@ -33,6 +33,10 @@ function App() {
     setPosts([newPost, ...posts])
   }
 
+  const funDeletePost = (deletedPost) => {
+    setPosts(posts.filter((elPost) => elPost.id !== deletedPost.id))
+  }
+
   return (
     <div className="App">
       <GenTitle genTitleText="Список постов" />
@@ -41,6 +45,7 @@ function App() {
       {posts.map((post, index) => <PostItem
         key={post.id}
         numberPost={index + 1}
+        argDeletePost={funDeletePost}
         argObjPost={post} />
       )}
     </div>
