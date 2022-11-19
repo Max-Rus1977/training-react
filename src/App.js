@@ -4,6 +4,7 @@ import GenTitle from './components/GenTitle';
 import Line from './components/Line';
 import PostForm from './components/PostForm';
 import PostList from './components/PostList';
+import TitlePostsNone from './components/TitlePostsNone';
 
 import './styles.css';
 
@@ -42,7 +43,11 @@ function App() {
       <GenTitle genTitleText="Список постов" />
       <PostForm argCreatePost={funCreatePost} />
       <Line />
-      <PostList arrPosts={posts} argDeletePost={funDeletePost} />
+      {
+        posts.length !== 0
+          ? <PostList arrPosts={posts} argDeletePost={funDeletePost} />
+          : <TitlePostsNone />
+      }
     </div>
   );
 }
