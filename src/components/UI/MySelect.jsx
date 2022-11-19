@@ -1,12 +1,24 @@
 import React from 'react'
 
-const MySelect = () => {
-  const objOptions = ['Названию', 'Описанию']
+const MySelect = ({ argArrOptions, argSortedPost, defaultValue, value }) => {
+  const changeThisSelect = (event) => {
+    argSortedPost(event.target.value)
+  }
 
   return (
-    <select className='select'>
-      <option>Сортировка по:</option>
-      {objOptions.map((option) => <option>{option}</option>)}
+    <select
+      className='select'
+      onChange={changeThisSelect}
+      value={value}
+    >
+      <option disabled value=''>{defaultValue}</option>
+      {argArrOptions.map((option) =>
+        <option
+          key={option.value}
+          value={option.value}
+        >
+          {option.name}
+        </option>)}
     </select>
   )
 }

@@ -1,15 +1,16 @@
 import { useState } from 'react';
 
 import GenTitle from './components/GenTitle';
-import Line from './components/Line';
 import PostForm from './components/PostForm';
+import Line from './components/Line';
+import MySelect from './components/UI/MySelect';
 import PostList from './components/PostList';
 import TitlePostsNone from './components/TitlePostsNone';
-import MySelect from './components/UI/MySelect';
 
 import './styles.css';
 
 function App() {
+
   const [posts, setPosts] = useState([
     {
       "userId": 1,
@@ -39,12 +40,29 @@ function App() {
     setPosts(posts.filter((elPost) => elPost.id !== deletedPost.id))
   }
 
+  const [selectedSort, setSelectedSort] = useState('')
+
+  const arrOptions = [
+    { value: 'title', name: 'Названию' },
+    { value: 'body', name: 'Описанию' }
+  ]
+
+  const funSortedPost = (sort) => {
+    setSelectedSort(sort)
+    console.log(sort);
+    setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])))
+  }
+
   return (
     <div className="App">
       <GenTitle genTitleText="Список постов" />
       <PostForm argCreatePost={funCreatePost} />
       <Line />
-      <MySelect />
+      <MySelect
+        defaultValue='Сортировка по:'
+        argArrOptions={arrOptions}
+        value={selectedSort}
+        argSortedPost={funSortedPost} />
       <Line />
       {
         posts.length !== 0
