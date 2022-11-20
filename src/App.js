@@ -42,6 +42,16 @@ function App() {
 
   const [selectedSort, setSelectedSort] = useState('')
 
+  const sortedPosts = getSortedPosts()
+
+  function getSortedPosts() {
+    console.log('Функция getSortedPosts отработала')
+    if (selectedSort) {
+      return [...posts].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]))
+    }
+    return posts
+  }
+
   const arrOptions = [
     { value: 'title', name: 'Названию' },
     { value: 'body', name: 'Описанию' }
@@ -49,8 +59,12 @@ function App() {
 
   const funSortedPost = (sort) => {
     setSelectedSort(sort)
-    console.log(sort);
-    setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])))
+  }
+
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const funSearch = (event) => {
+    setSearchQuery(event.target.value)
   }
 
   return (
@@ -62,11 +76,18 @@ function App() {
         defaultValue='Сортировка по:'
         argArrOptions={arrOptions}
         value={selectedSort}
-        argSortedPost={funSortedPost} />
+        argSortedPost={funSortedPost}
+      />
+      <input
+        className='input-search'
+        placeholder='ПОИСК'
+        onChange={funSearch}
+        value={searchQuery}
+      />
       <Line />
       {
         posts.length !== 0
-          ? <PostList arrPosts={posts} argDeletePost={funDeletePost} />
+          ? <PostList arrPosts={sortedPosts} argDeletePost={funDeletePost} />
           : <TitlePostsNone />
       }
     </div>
