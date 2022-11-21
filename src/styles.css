@@ -165,6 +165,10 @@ form {
   border: 1px solid #004a81;
 }
 
+.btn__add-post:hover {
+  background-color: #16616d;
+}
+
 .box-btn__add-post {
   float: right;
   margin: 20px 10% 0 0;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import GenTitle from './components/GenTitle';
 import PostForm from './components/PostForm';
@@ -31,6 +31,13 @@ function App() {
       "body": "i am so happy but you can relax i've been charged with a couple of times so i've been charged with a couple of times hate to see him work and heal him"
     },
   ])
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedSort, setSelectedSort] = useState('')
+
+  const arrOptions = [
+    { value: 'title', name: 'Названию' },
+    { value: 'body', name: 'Описанию' }
+  ]
 
   const funCreatePost = (newPost) => {
     setPosts([newPost, ...posts])
@@ -40,28 +47,20 @@ function App() {
     setPosts(posts.filter((elPost) => elPost.id !== deletedPost.id))
   }
 
-  const [selectedSort, setSelectedSort] = useState('')
-
-  const sortedPosts = getSortedPosts()
-
-  function getSortedPosts() {
-    console.log('Функция getSortedPosts отработала')
+  const sortedPosts = useMemo(() => {
     if (selectedSort) {
       return [...posts].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]))
     }
     return posts
-  }
+  }, [selectedSort, posts])
 
-  const arrOptions = [
-    { value: 'title', name: 'Названию' },
-    { value: 'body', name: 'Описанию' }
-  ]
+  const sortedAndSearchPost = useMemo(() => {
+    return sortedPosts.filter((post) => post.title.toLowerCase().includes(searchQuery))
+  }, [searchQuery, sortedPosts])
 
   const funSortedPost = (sort) => {
     setSelectedSort(sort)
   }
-
-  const [searchQuery, setSearchQuery] = useState('')
 
   const funSearch = (event) => {
     setSearchQuery(event.target.value)
@@ -86,8 +85,8 @@ function App() {
       />
       <Line />
       {
-        posts.length !== 0
-          ? <PostList arrPosts={sortedPosts} argDeletePost={funDeletePost} />
+        sortedAndSearchPost.length !== 0
+          ? <PostList arrPosts={sortedAndSearchPost} argDeletePost={funDeletePost} />
           : <TitlePostsNone />
       }
     </div>
