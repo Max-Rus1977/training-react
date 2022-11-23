@@ -1,9 +1,15 @@
 import React from 'react'
 
-const MyBtn = ({ children, ...props }) => {
+const MyBtn = ({ addClassName, children, ...props }) => {
+
+  const arrClassBtn = []
+  if (addClassName) {
+    arrClassBtn.push(addClassName)
+  }
+
   return (
-    <div className='box-btn__add-post'>
-      <button {...props} className='btn btn__add-post' >{children}</button>
+    <div className={arrClassBtn.join(' ')}>
+      <button {...props} className='btn__add-post' >{children}</button>
     </div>
   )
 }

@@ -31,8 +31,8 @@ const PostForm = ({ argCreatePost }) => {
     <form>
       <MyInput onChange={getTextInput} value={dataPost.title} labelName='Текст заголовка' />
       <MyTextarea onChange={getTextTextarea} value={dataPost.body} labelName='Текст поста' />
-      <MyBtn onClick={addNewPost}>ADD POST</MyBtn>
-    </form>
+      <MyBtn addClassName='box-btn__add-post' onClick={addNewPost}>ADD POST</MyBtn>
+    </form >
   )
 }
 

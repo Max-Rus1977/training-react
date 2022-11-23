@@ -52,6 +52,15 @@ h1 {
   text-align: center;
 }
 
+.box-calling-form-btn {
+  width: 50%;
+  margin: 30px auto;
+}
+
+.box-calling-form-btn button {
+  width: 100%;
+}
+
 form {
   margin: 30px 0 90px 0;
 }
@@ -158,15 +167,19 @@ form {
 }
 
 .btn__add-post {
-  width: 100px;
-  height: 30px;
+  padding: 10px;
   background-color: #16c4df;
   color: #471c1c;
+  font-size: 20px;
+  font-weight: bold;
   border: 1px solid #004a81;
+  border-radius: 8px;
+  transition: 0.4s;
 }
 
 .btn__add-post:hover {
   background-color: #16616d;
+  color: #fff;
 }
 
 .box-btn__add-post {
@@ -178,4 +191,27 @@ form {
   text-align: center;
   font-size: 35px;
   font-weight: 900;
+}
+
+.closeModal {
+  float: right;
+  margin-right: 10px;
+}
+
+.closeModal button {
+  width: 23px;
+  height: 23px;
+  padding: 1px 0px 1px 1px;
+  background-color: #fff;
+  font-size: 12px;
+  color: red;
+  border: 1px solid red;
+  border-radius: 3px;
+  transition: 0.5s;
+}
+
+.closeModal button:hover {
+  background-color: red;
+  color: beige;
+  border: 1px solid silver;
 }

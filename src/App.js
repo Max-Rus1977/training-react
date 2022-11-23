@@ -4,10 +4,11 @@ import GenTitle from './components/GenTitle';
 import PostForm from './components/PostForm';
 import Line from './components/Line';
 import PostList from './components/PostList';
-import TitlePostsNone from './components/TitlePostsNone';
 
 import './styles.css';
 import PostFilter from './components/PostFilter';
+import MyModal from './components/UI/modal/MyModal';
+import MyBtn from './components/UI/MyBtn';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
     },
   ])
   const [filter, setFilter] = useState({ sort: '', query: '' })
+  const [activeModal, setActiveModal] = useState(false)
 
   const arrOptions = [
     { value: 'title', name: 'Названию' },
@@ -40,6 +42,7 @@ function App() {
 
   const funCreatePost = (newPost) => {
     setPosts([newPost, ...posts])
+    setActiveModal(false)
   }
 
   const funDeletePost = (deletedPost) => {
@@ -61,12 +64,15 @@ function App() {
   return (
     <div className="App">
       <GenTitle genTitleText="Список постов" />
-      <PostForm argCreatePost={funCreatePost} />
+      <MyBtn addClassName='box-calling-form-btn' onClick={() => setActiveModal(true)} >СОЗДАТЬ ПОСТ</MyBtn>
       <Line />
       <PostFilter filter={filter} setFilter={setFilter} argSelectArrOptions={arrOptions}
       />
       <Line />
       <PostList arrPosts={sortedAndSearchPost} argDeletePost={funDeletePost} />
+      <MyModal activeModal={activeModal} setActiveModal={setActiveModal}>
+        <PostForm argCreatePost={funCreatePost} />
+      </MyModal>
     </div>
   );
 }
