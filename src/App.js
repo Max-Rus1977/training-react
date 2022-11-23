@@ -3,11 +3,11 @@ import { useMemo, useState } from 'react';
 import GenTitle from './components/GenTitle';
 import PostForm from './components/PostForm';
 import Line from './components/Line';
-import MySelect from './components/UI/MySelect';
 import PostList from './components/PostList';
 import TitlePostsNone from './components/TitlePostsNone';
 
 import './styles.css';
+import PostFilter from './components/PostFilter';
 
 function App() {
 
@@ -31,8 +31,7 @@ function App() {
       "body": "i am so happy but you can relax i've been charged with a couple of times so i've been charged with a couple of times hate to see him work and heal him"
     },
   ])
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedSort, setSelectedSort] = useState('')
+  const [filter, setFilter] = useState({ sort: '', query: '' })
 
   const arrOptions = [
     { value: 'title', name: 'Названию' },
@@ -48,40 +47,23 @@ function App() {
   }
 
   const sortedPosts = useMemo(() => {
-    if (selectedSort) {
-      return [...posts].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]))
+    if (filter.sort) {
+      return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
     }
     return posts
-  }, [selectedSort, posts])
+  }, [filter.sort, posts])
 
   const sortedAndSearchPost = useMemo(() => {
-    return sortedPosts.filter((post) => post.title.toLowerCase().includes(searchQuery))
-  }, [searchQuery, sortedPosts])
+    return sortedPosts.filter((post) => post.title.toLowerCase().includes(filter.query))
+  }, [filter.query, sortedPosts])
 
-  const funSortedPost = (sort) => {
-    setSelectedSort(sort)
-  }
-
-  const funSearch = (event) => {
-    setSearchQuery(event.target.value)
-  }
 
   return (
     <div className="App">
       <GenTitle genTitleText="Список постов" />
       <PostForm argCreatePost={funCreatePost} />
       <Line />
-      <MySelect
-        defaultValue='Сортировка по:'
-        argArrOptions={arrOptions}
-        value={selectedSort}
-        argSortedPost={funSortedPost}
-      />
-      <input
-        className='input-search'
-        placeholder='ПОИСК'
-        onChange={funSearch}
-        value={searchQuery}
+      <PostFilter filter={filter} setFilter={setFilter} argSelectArrOptions={arrOptions}
       />
       <Line />
       {

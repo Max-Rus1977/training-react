@@ -1,18 +1,15 @@
 import React from 'react'
 
-const MySelect = ({ argArrOptions, argSortedPost, defaultValue, value }) => {
-  const changeThisSelect = (event) => {
-    argSortedPost(event.target.value)
-  }
+const MySelect = ({ argSelectArrOptions, defaultValue, filter, onChange }) => {
 
   return (
     <select
       className='select'
-      onChange={changeThisSelect}
-      value={value}
+      onChange={(event) => onChange(event.target.value)}
+      value={filter.sort}
     >
       <option disabled value=''>{defaultValue}</option>
-      {argArrOptions.map((option) =>
+      {argSelectArrOptions.map((option) =>
         <option
           key={option.value}
           value={option.value}
