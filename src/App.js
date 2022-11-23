@@ -66,11 +66,7 @@ function App() {
       <PostFilter filter={filter} setFilter={setFilter} argSelectArrOptions={arrOptions}
       />
       <Line />
-      {
-        sortedAndSearchPost.length !== 0
-          ? <PostList arrPosts={sortedAndSearchPost} argDeletePost={funDeletePost} />
-          : <TitlePostsNone />
-      }
+      <PostList arrPosts={sortedAndSearchPost} argDeletePost={funDeletePost} />
     </div>
   );
 }
