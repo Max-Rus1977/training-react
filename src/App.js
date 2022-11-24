@@ -1,5 +1,5 @@
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { usePosts } from './hooks/usePosts';
 
 import './styles.css';
@@ -14,26 +14,7 @@ import MyBtn from './components/UI/MyBtn';
 
 function App() {
 
-  const [posts, setPosts] = useState([
-    {
-      "userId": 1,
-      "id": 1,
-      "title": "I am an egocentric choice, except for repentance",
-      "body": "please stop shouting and deny the consequences of what's coming and how to avoid it i am a royal arsenal leader"
-    },
-    {
-      "userId": 1,
-      "id": 2,
-      "title": "qui est esse",
-      "body": "it's hard to believe that she doesn't have to drink much pain if she doesn't have to be bored ou don't have to worry about anything that is not possible without you"
-    },
-    {
-      "userId": 1,
-      "id": 3,
-      "title": "she was almost upset when she sat there",
-      "body": "i am so happy but you can relax i've been charged with a couple of times so i've been charged with a couple of times hate to see him work and heal him"
-    },
-  ])
+  const [posts, setPosts] = useState([{ id: 200, title: 'title1', body: 'body1' }])
   const [filter, setFilter] = useState({ sort: '', query: '' })
   const [activeModal, setActiveModal] = useState(false)
   const sortedAndSearchPost = usePosts(posts, filter.sort, filter.query)
@@ -51,6 +32,15 @@ function App() {
   const funDeletePost = (deletedPost) => {
     setPosts(posts.filter((elPost) => elPost.id !== deletedPost.id))
   }
+
+  async function fetchPost() {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    setPosts(response.data)
+  }
+
+  useEffect(() => {
+    fetchPost()
+  }, [])
 
   return (
     <div className="App">
