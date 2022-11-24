@@ -11,6 +11,7 @@ import PostList from './components/PostList';
 import PostFilter from './components/PostFilter';
 import MyModal from './components/UI/modal/MyModal';
 import MyBtn from './components/UI/MyBtn';
+import MyLoader from './components/UI/loader/MyLoader';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
   const [filter, setFilter] = useState({ sort: '', query: '' })
   const [activeModal, setActiveModal] = useState(false)
   const sortedAndSearchPost = usePosts(posts, filter.sort, filter.query)
+  const [isLoading, setIsLoading] = useState(false)
 
   const arrOptions = [
     { value: 'title', name: 'Названию' },
@@ -34,8 +36,16 @@ function App() {
   }
 
   async function fetchPost() {
-    const responsePosts = await PostService.getAll();
-    setPosts(responsePosts)
+    setIsLoading(true)
+
+    setTimeout(async () => {
+      const responsePosts = await PostService.getAll();
+      setPosts(responsePosts)
+
+      setIsLoading(false)
+
+    }, 5000)
+
   }
 
   useEffect(() => {
@@ -58,7 +68,11 @@ function App() {
         argSelectArrOptions={arrOptions}
       />
       <Line />
-      <PostList arrPosts={sortedAndSearchPost} argDeletePost={funDeletePost} />
+      {
+        isLoading
+          ? <MyLoader />
+          : <PostList arrPosts={sortedAndSearchPost} argDeletePost={funDeletePost} />
+      }
       <MyModal activeModal={activeModal} setActiveModal={setActiveModal}>
         <PostForm argCreatePost={funCreatePost} />
       </MyModal>
