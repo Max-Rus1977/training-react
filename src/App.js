@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { usePosts } from './hooks/usePosts';
 
 import './styles.css';
 
+import PostService from './API/PostService';
 import GenTitle from './components/GenTitle';
 import PostForm from './components/PostForm';
 import Line from './components/Line';
@@ -14,7 +14,7 @@ import MyBtn from './components/UI/MyBtn';
 
 function App() {
 
-  const [posts, setPosts] = useState([{ id: 200, title: 'title1', body: 'body1' }])
+  const [posts, setPosts] = useState([])
   const [filter, setFilter] = useState({ sort: '', query: '' })
   const [activeModal, setActiveModal] = useState(false)
   const sortedAndSearchPost = usePosts(posts, filter.sort, filter.query)
@@ -34,8 +34,8 @@ function App() {
   }
 
   async function fetchPost() {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-    setPosts(response.data)
+    const responsePosts = await PostService.getAll();
+    setPosts(responsePosts)
   }
 
   useEffect(() => {
