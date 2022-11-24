@@ -1,11 +1,13 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
+
+import { usePosts } from './hooks/usePosts';
+
+import './styles.css';
 
 import GenTitle from './components/GenTitle';
 import PostForm from './components/PostForm';
 import Line from './components/Line';
 import PostList from './components/PostList';
-
-import './styles.css';
 import PostFilter from './components/PostFilter';
 import MyModal from './components/UI/modal/MyModal';
 import MyBtn from './components/UI/MyBtn';
@@ -34,6 +36,7 @@ function App() {
   ])
   const [filter, setFilter] = useState({ sort: '', query: '' })
   const [activeModal, setActiveModal] = useState(false)
+  const sortedAndSearchPost = usePosts(posts, filter.sort, filter.query)
 
   const arrOptions = [
     { value: 'title', name: 'Названию' },
@@ -49,24 +52,20 @@ function App() {
     setPosts(posts.filter((elPost) => elPost.id !== deletedPost.id))
   }
 
-  const sortedPosts = useMemo(() => {
-    if (filter.sort) {
-      return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
-    }
-    return posts
-  }, [filter.sort, posts])
-
-  const sortedAndSearchPost = useMemo(() => {
-    return sortedPosts.filter((post) => post.title.toLowerCase().includes(filter.query))
-  }, [filter.query, sortedPosts])
-
-
   return (
     <div className="App">
       <GenTitle genTitleText="Список постов" />
-      <MyBtn addClassName='box-calling-form-btn' onClick={() => setActiveModal(true)} >СОЗДАТЬ ПОСТ</MyBtn>
+      <MyBtn
+        addClassName='box-calling-form-btn'
+        onClick={() => setActiveModal(true)}
+      >
+        СОЗДАТЬ ПОСТ
+      </MyBtn>
       <Line />
-      <PostFilter filter={filter} setFilter={setFilter} argSelectArrOptions={arrOptions}
+      <PostFilter
+        filter={filter}
+        setFilter={setFilter}
+        argSelectArrOptions={arrOptions}
       />
       <Line />
       <PostList arrPosts={sortedAndSearchPost} argDeletePost={funDeletePost} />

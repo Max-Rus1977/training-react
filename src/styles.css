@@ -215,14 +215,14 @@ form {
   color: beige;
   border: 1px solid silver;
 }
-
+ 
 /*
 * TransitionGroup
 */
 
 .postItem-enter {
   opacity: 0.5;
-  transform: translateX(-350px)
+  transform: translateX(-20%)
 }
 .postItem-enter-active {
   transform: translateX(0);
@@ -232,6 +232,6 @@ form {
   opacity: 0.5;
 }
 .postItem-exit-active {
-  transform: translateX(350px);
+  transform: translateX(20%);
   transition:  500ms ease-in;
 }
