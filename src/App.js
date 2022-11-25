@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useFetching } from './hooks/useFetching';
 import { usePosts } from './hooks/usePosts';
 
 import './styles.css';
@@ -12,6 +13,7 @@ import PostFilter from './components/PostFilter';
 import MyModal from './components/UI/modal/MyModal';
 import MyBtn from './components/UI/MyBtn';
 import MyLoader from './components/UI/loader/MyLoader';
+import ErrorMessage from './components/UI/error/ErrorMessage';
 
 function App() {
 
@@ -19,7 +21,11 @@ function App() {
   const [filter, setFilter] = useState({ sort: '', query: '' })
   const [activeModal, setActiveModal] = useState(false)
   const sortedAndSearchPost = usePosts(posts, filter.sort, filter.query)
-  const [isLoading, setIsLoading] = useState(false)
+
+  const [fetchPost, postLoading, queryError] = useFetching(async () => {
+    const responsePosts = await PostService.getAll();
+    setPosts(responsePosts)
+  })
 
   const arrOptions = [
     { value: 'title', name: 'Названию' },
@@ -33,19 +39,6 @@ function App() {
 
   const funDeletePost = (deletedPost) => {
     setPosts(posts.filter((elPost) => elPost.id !== deletedPost.id))
-  }
-
-  async function fetchPost() {
-    setIsLoading(true)
-
-    setTimeout(async () => {
-      const responsePosts = await PostService.getAll();
-      setPosts(responsePosts)
-
-      setIsLoading(false)
-
-    }, 5000)
-
   }
 
   useEffect(() => {
@@ -68,8 +61,9 @@ function App() {
         argSelectArrOptions={arrOptions}
       />
       <Line />
+      {queryError && <ErrorMessage queryError={queryError} />}
       {
-        isLoading
+        postLoading
           ? <MyLoader />
           : <PostList arrPosts={sortedAndSearchPost} argDeletePost={funDeletePost} />
       }

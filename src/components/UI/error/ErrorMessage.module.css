@@ -1,0 +1,23 @@
+.box {
+  width: 60%;
+  margin: 0 auto 50px auto;
+  padding: 25px;
+  color: red;
+  border: 1px solid red;
+}
+
+.title {
+  font-size: 27px;
+}
+
+.boxText {
+  margin-top: 15px;
+}
+
+.text {
+font-size: 20px;
+}
+
+/* .text+.text {
+margin-top: 4px;
+} */
