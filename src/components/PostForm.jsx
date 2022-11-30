@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import MyBtn from './UI/MyBtn';
-import MyInput from './UI/MyInput';
-import MyTextarea from './UI/MyTextarea';
+import MyBtn from '../UI/MyBtn';
+import MyInput from '../UI/MyInput';
+import MyTextarea from '../UI/MyTextarea';
 
 const PostForm = ({ argCreatePost }) => {
   const [dataPost, setDataPost] = useState({ title: '', body: '' })

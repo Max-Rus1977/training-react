@@ -1,5 +1,5 @@
 import React from 'react'
-import MySelect from './UI/MySelect'
+import MySelect from '../UI/MySelect'
 
 const PostFilter = ({ filter, setFilter, argSelectArrOptions }) => {
 

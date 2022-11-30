@@ -1,0 +1,25 @@
+.boxPagination {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.paginationBtn {
+  width: 35px;
+  height: 35px;
+  padding-right: 1px;
+  background-color: #f0f8ff;
+  border: 1px solid #11aedb;
+  border-radius: 50%;
+}
+
+.paginationBtn + .paginationBtn {
+  margin-left: 5px;
+}
+
+.active {
+  background-color: #2469a7;
+  color: #fff;
+  font-weight: bold;
+  border: 2px solid #dadb11;
+}

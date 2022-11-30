@@ -12,14 +12,13 @@ const PostList = ({ arrPosts, argDeletePost }) => {
   return (
     <div>
       <TransitionGroup>
-        {arrPosts.map((post, index) =>
+        {arrPosts.map((post) =>
           <CSSTransition
             key={post.id}
             timeout={500}
             classNames="postItem"
           >
             <PostItem
-              numberPost={index + 1}
               argDeletePost={argDeletePost}
               argObjPost={post}
             />

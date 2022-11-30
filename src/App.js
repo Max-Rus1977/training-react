@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useFetching } from './hooks/useFetching';
 import { usePosts } from './hooks/usePosts';
 
+import { getPagesCount, getPagesArray } from './utils/pages';
+
 import './styles.css';
 
 import PostService from './API/PostService';
@@ -10,22 +12,33 @@ import PostForm from './components/PostForm';
 import Line from './components/Line';
 import PostList from './components/PostList';
 import PostFilter from './components/PostFilter';
-import MyModal from './components/UI/modal/MyModal';
-import MyBtn from './components/UI/MyBtn';
-import MyLoader from './components/UI/loader/MyLoader';
-import ErrorMessage from './components/UI/error/ErrorMessage';
+import MyModal from './UI/modal/MyModal';
+import MyBtn from './UI/MyBtn';
+import MyLoader from './UI/loader/MyLoader';
+import ErrorMessage from './UI/error/ErrorMessage';
+import Pagination from './components/pagination/Pagination';
 
 function App() {
 
   const [posts, setPosts] = useState([])
   const [filter, setFilter] = useState({ sort: '', query: '' })
   const [activeModal, setActiveModal] = useState(false)
+  const [totalPages, setTotalPages] = useState(0)
+  const [limit, setLimit] = useState(10)
+  const [page, setPage] = useState(1)
+
   const sortedAndSearchPost = usePosts(posts, filter.sort, filter.query)
 
   const [fetchPost, postLoading, queryError] = useFetching(async () => {
-    const responsePosts = await PostService.getAll();
-    setPosts(responsePosts)
+
+    const responsePosts = await PostService.getAll(limit, page);
+    setPosts(responsePosts.data)
+
+    const totalCount = responsePosts.headers['x-total-count']
+    setTotalPages(getPagesCount(totalCount, limit))
   })
+
+  const pageArray = getPagesArray(totalPages)
 
   const arrOptions = [
     { value: 'title', name: 'Названию' },
@@ -43,7 +56,11 @@ function App() {
 
   useEffect(() => {
     fetchPost()
-  }, [])
+  }, [page])
+
+  const changePost = (page) => {
+    setPage(page)
+  }
 
   return (
     <div className="App">
@@ -70,6 +87,7 @@ function App() {
       <MyModal activeModal={activeModal} setActiveModal={setActiveModal}>
         <PostForm argCreatePost={funCreatePost} />
       </MyModal>
+      <Pagination page={page} pageArray={pageArray} changePost={changePost} />
     </div>
   );
 }
