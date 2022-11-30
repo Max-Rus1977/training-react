@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useFetching } from './hooks/useFetching';
 import { usePosts } from './hooks/usePosts';
 
-import { getPagesCount, getPagesArray } from './utils/pages';
+import { getPagesCount } from './utils/pages';
 
 import './styles.css';
 
@@ -29,7 +29,7 @@ function App() {
 
   const sortedAndSearchPost = usePosts(posts, filter.sort, filter.query)
 
-  const [fetchPost, postLoading, queryError] = useFetching(async () => {
+  const [fetchPost, postLoading, queryError] = useFetching(async (limit, page) => {
 
     const responsePosts = await PostService.getAll(limit, page);
     setPosts(responsePosts.data)
@@ -37,8 +37,6 @@ function App() {
     const totalCount = responsePosts.headers['x-total-count']
     setTotalPages(getPagesCount(totalCount, limit))
   })
-
-  const pageArray = getPagesArray(totalPages)
 
   const arrOptions = [
     { value: 'title', name: 'Названию' },
@@ -55,11 +53,12 @@ function App() {
   }
 
   useEffect(() => {
-    fetchPost()
-  }, [page])
+    fetchPost(limit, page)
+  }, [])
 
   const changePost = (page) => {
     setPage(page)
+    fetchPost(limit, page)
   }
 
   return (
@@ -87,7 +86,7 @@ function App() {
       <MyModal activeModal={activeModal} setActiveModal={setActiveModal}>
         <PostForm argCreatePost={funCreatePost} />
       </MyModal>
-      <Pagination page={page} pageArray={pageArray} changePost={changePost} />
+      <Pagination totalPages={totalPages} page={page} changePost={changePost} />
     </div>
   );
 }
