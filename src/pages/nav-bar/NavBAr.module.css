@@ -1,0 +1,16 @@
+.boxNav {
+  position: fixed;
+  top: 5%;
+  left: 4%;
+  padding: 25px;
+  background-color: #f0eefd;
+  border-radius: 8px;
+}
+
+.boxNav ul {
+  margin-top: 15px;
+}
+
+.boxNav li  {
+  margin-top: 2px;
+}

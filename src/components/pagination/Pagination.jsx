@@ -2,7 +2,7 @@ import React from 'react'
 import { getPagesArray } from '../../utils/pages'
 import cl from './Pagination.module.css'
 
-const Pagination = ({ totalPages, page, changePost }) => {
+const Pagination = ({ totalPages, page, changePage }) => {
 
   const pageArray = getPagesArray(totalPages)
   const classActive = [cl.active, cl.paginationBtn].join(' ')
@@ -13,7 +13,7 @@ const Pagination = ({ totalPages, page, changePost }) => {
         <button
           key={num}
           className={num === page ? classActive : cl.paginationBtn}
-          onClick={() => changePost(num)}
+          onClick={() => changePage(num)}
         >
           {num}
         </button>)}

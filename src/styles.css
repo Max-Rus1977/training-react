@@ -215,6 +215,44 @@ form {
   color: beige;
   border: 1px solid silver;
 }
+
+/*
+* HomPage AboutPage
+*/
+
+.box-hom-page,
+.box-about-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.title-hom-page {
+  font-size: 50px;
+  color: #157cd0;
+}
+
+.title-about-page {
+  font-size: 50px;
+  color: #7715d0;
+}
+
+.text {
+  width: 60%;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.text-about-page {
+  color: #1f1136;
+}
+
+.text-home-page {
+  color: #193a54;
+}
  
 /*
 * TransitionGroup
@@ -234,4 +272,34 @@ form {
 .postItem-exit-active {
   transform: translateX(20%);
   transition:  500ms ease-in;
+}
+
+/*
+* Router
+*/
+
+.navLink {
+  display: block;
+  padding: 4px 3px 4px 10px;
+  color: #073a5e;
+  font-size: 20px;
+  border-radius: 5px;
+  transition: 0.4s;
+}
+
+.navLink:hover {
+  background-color: #bea2ed;
+  color: #f8f1ff;
+  transform: scale(1.08);
+}
+
+.active {
+  background-color: #5d1bc9;
+  color: #fff;
+}
+
+.active:hover {
+  background-color: #5d1bc9;
+  color: #fff;
+  transform: scale(1);
 }
