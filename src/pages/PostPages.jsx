@@ -15,7 +15,6 @@ import MyBtn from '../UI/MyBtn';
 import MyLoader from '../UI/loader/MyLoader';
 import ErrorMessage from '../UI/error/ErrorMessage';
 import Pagination from '../components/pagination/Pagination';
-import NavBAr from './nav-bar/NavBAr';
 
 function PostPages() {
 
@@ -62,7 +61,6 @@ function PostPages() {
 
   return (
     <div className="App">
-      <NavBAr />
       <GenTitle genTitleText="Список постов" />
       <MyBtn
         addClassName='box-calling-form-btn'

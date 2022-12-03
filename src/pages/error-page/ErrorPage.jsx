@@ -1,4 +1,5 @@
 import { useRouteError } from 'react-router-dom'
+import NavBAr from '../nav-bar/NavBAr';
 import cl from './ErrorPage.module.css'
 
 export default function ErrorPage() {
@@ -7,6 +8,7 @@ export default function ErrorPage() {
 
   return (
     <div id="error-page" className={cl.boxErrorPage}>
+      <NavBAr />
       <h1 className={cl.title}>Oops!</h1>
       <p className={cl.text}>Sorry, an unexpected error has occurred.</p>
       <p>

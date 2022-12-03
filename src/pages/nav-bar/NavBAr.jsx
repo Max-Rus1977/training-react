@@ -7,7 +7,7 @@ const NavBAr = () => {
     <nav className={cl.boxNav}>
       <h4>Navigation</h4>
       <ul>
-        <li><NavLink className='navLink' to={`/`}>Hom page</NavLink></li>
+        <li><NavLink className='navLink' to={`/home`}>Hom page</NavLink></li>
         <li><NavLink className='navLink' to={`/posts`}>Posts</NavLink></li>
         <li><NavLink className='navLink' to={`/about`}>About</NavLink></li>
       </ul>
