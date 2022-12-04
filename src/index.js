@@ -6,6 +6,7 @@ import App from './App';
 import HomePage from './pages/HomePage'
 import PostPages from './pages/PostPages'
 import About from './pages/About';
+import OnePost from './pages/OnePost';
 import ErrorPage from './pages/error-page/ErrorPage';
 
 const router = createBrowserRouter([
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/home', element: <HomePage />, errorElement: <ErrorPage />, },
       { path: '/posts', element: <PostPages />, errorElement: <ErrorPage />, },
+      { path: '/posts/:id', element: <OnePost />, errorElement: <ErrorPage /> },
       { path: '/about', element: <About />, errorElement: <ErrorPage />, }
     ]
   }

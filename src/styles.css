@@ -253,6 +253,48 @@ form {
 .text-home-page {
   color: #193a54;
 }
+
+/*
+* OnePost
+*/
+
+.one-post-gen-title {
+  padding-top: 35px;
+  font-size: 35px;
+  color: #135e9f;
+  text-align: center;
+}
+
+.box-one-post {
+  width: 60%;
+  margin: 20px auto;
+}
+
+.box-one-post p {
+  margin-top: 10px;
+}
+
+.title-one-post-comments {
+  font-size: 28px;
+  text-align: center;
+}
+
+.box-one-post-comments {
+  width: 60%;
+  margin: 20px auto;
+}
+
+.box-one-post-comments h5 {
+  font-size: 20px;
+}
+
+.box-one-post-comments p {
+  margin-top: 8px;
+}
+
+.box-comments + .box-comments {
+  margin-top: 15px;
+}
  
 /*
 * TransitionGroup

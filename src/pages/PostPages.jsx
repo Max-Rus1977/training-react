@@ -52,7 +52,7 @@ function PostPages() {
 
   useEffect(() => {
     fetchPost(limit, page)
-  }, [])
+  })
 
   const changePage = (page) => {
     setPage(page)
