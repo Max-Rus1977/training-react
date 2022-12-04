@@ -6,7 +6,7 @@ import App from './App';
 import HomePage from './pages/HomePage'
 import PostPages from './pages/PostPages'
 import About from './pages/About';
-import OnePost from './pages/OnePost';
+import OnePost from './pages/one-post/OnePost';
 import ErrorPage from './pages/error-page/ErrorPage';
 
 const router = createBrowserRouter([
